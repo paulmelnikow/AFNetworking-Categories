@@ -28,6 +28,8 @@
  Since the operation is **already queued** and may already be started, the caller should not attempt to modify it.
  
  However, the caller may cancel the operation, wait until it's finished, or use it as a dependency for another NSOperation.
+ 
+ The methods fill a pointer to the enqueued operation because simply returning the operation would not change the method signature. In that case, the linker warns that the category overrides a method from the class. Secondarily, the parameter name reminds the programmer that the operation is already enqueued, and shouldn't be modified.
  */
 
 @interface AFHTTPClient (ReturnEnqueuedOperation)
